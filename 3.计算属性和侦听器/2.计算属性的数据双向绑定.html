@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName"><br>
+        <input type="text" v-model="lastName"><br>
+        <input type="text" v-model="fullName"><br>
+        <input type="text" v-model="fullName1">
+    </div>
+    <script>
+        const vm_getterSetter = new Vue({
+            el:'#app',
+            data:{
+                firstName:'a',
+                lastName:'b',
+            },
+            computed:{
+                // 计算属性getter方法的简写方式,并没有使用setter方法
+                fullName:function(){
+                    return this.firstName + '-' + this.lastName;
+                },
+                fullName1:{
+                    get(){
+                        return this.firstName + '-' + this.lastName;
+                    },
+                    //通过使用计算属性的setter方法监听了该属性，当变化时进行处理，实现数据双向变化的效果
+                    set(value){
+                        const arr = value.split('-');
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

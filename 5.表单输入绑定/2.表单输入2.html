@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>选择框</h1>
+        <!--Vue中 当初始值未匹配任何值时则被默认为未选中状态 ios中无法选取第一个，故而都需要第一项设置控制为空值-->
+        <!-- 单选时 绑定到一个空串中-->
+        <select name="" id="start" v-model="selected" >
+            <option value="" disabled>请选择</option>
+            <option value="Jack" >Jack</option>
+            <option value="John">John</option>
+            <option value="Cloak">Cloak</option>
+        </select>
+        <p>{{selected}}</p>
+        <!-- 多选时 绑定到数组中 -->
+        <select name="" id="second" v-model="secondSelected" multiple>
+            <option value="" disabled>请选择</option>
+            <option value="xiaoli">小丽</option>
+            <option value="luma">路马</option>
+            <option value="laide">莱德</option>
+        </select>
+        <p>{{secondSelected}}</p>
+    </div>
+    <script>
+        const vm_selected = new Vue({
+            el:'#app',
+            data:{
+                selected:'',
+                secondSelected:[],
+            }
+        })
+    </script>
+</body>
+</html>

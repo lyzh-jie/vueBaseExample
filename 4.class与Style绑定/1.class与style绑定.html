@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            background-color: red;
+        }
+        .class1{
+            color: pink;
+        }
+        .class2{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>class</h1>
+        <!-- class的对象写法，数组写法，还可以用计算属性的方式 -->
+        <p v-bind:class="{active:isActive}">小猪佩奇</p>
+        <p v-bind:class="[class1,class2]">汪汪队</p>
+        <p v-bind:class="classYN">瑞奇宝宝</p>
+        <h1>style绑定内联样式</h1>
+        <!-- style同样也可以用对象的写法,可以使用计算属性
+            css属性的名字可以使用驼峰命名法或者短横线分割来命名
+        -->
+        <p v-bind:style="{color,fontSize:fontSize + 'px'}">恐龙阿旺</p>
+        <p v-bind:style="styleYN">萌鸡小队</p>
+    </div>
+    <script>
+        const vm_class = new Vue({
+            el:'#app',
+            data:{
+                isActive:true,
+                class1:'class1',
+                class2:'class2',
+                color:'purple',
+                fontSize:50,
+                style1:{
+                    color:'orange',
+                    fontSize:'50px'
+                }             
+            },
+            computed:{
+                classYN:function(){
+                    return this.isActive ? this.class1 : this.class2;
+                },
+                styleYN:function(){
+                    return this.isActive ? this.style1 : '';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

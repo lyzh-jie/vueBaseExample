@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+    </div>
+    <script>
+        const vm_firstExample = new Vue({//选项对象或者说是配置对象
+            el:'#app',
+            data:{//data对象中的所有属性加入到vue的响应式系统中，他们改变视图也会发生“响应”，更新数据
+                msg:'小猪佩奇',
+                name:''//设置的初始值
+            }
+        })       
+        vm_firstExample.msg='汪汪队';//当获取实例对象上的属性进行改变时，视图也会响应
+        vm_firstExample.name='路马';//注：改变的对象的属性必须已经存在与data中的属性，若是不存在，则不会响应，因而需要给他们设立初始值
+        console.log(vm_firstExample);
+        console.log(vm_firstExample._data);   
+        console.log(vm_firstExample.$data);//除了数据属性，vue实例还暴露了一些实例属性和方法，它们都有前缀$。  
+        // 注意：vm_firsetExample、vm_firstExample._data、vm_firstExample.$data中的属性
+    </script>
+</body>
+</html>
+<!-- 
+    初始值类型：
+    data：{
+        newText:'',
+        num:0,
+        newBealoon:false/true,
+        newArry:[],
+        newObject:{},
+        err:null
+    }
+ -->

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>侦听器的两种用法</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName"><br>
+        <input type="text" v-model="lastName"><br>
+        <input type="text" v-model="fullName"><br>
+        <input type="text" v-model="fullName1"><br>
+        <input type="text" v-model="obj.name"><br>
+        <input type="text" v-model="obj.age">
+    </div>
+    <script>
+        const vm_watch = new Vue({
+            el:'#app',
+            data:{
+                firstName:'a',
+                lastName:'b',
+                fullName:'a-b',
+                fullName1:'a-b',
+                obj:{
+                    name:'li',
+                    age:19
+                },
+                obj1:{
+                    name:'luma'
+                }
+            },
+            watch:{
+                // 侦听器或者又叫监视 监视data对象中的数据，当数据变化便可以做一些运算
+                firstName(value){
+                    this.fullName = value + '-' + this.lastName;
+                },
+                lastName(value){
+                    this.fullName = this.firstName + '-' + value;
+                },
+                fullName(value){
+                    let arr = value.split('-');
+                    this.firstName = arr[0];
+                    this.lastName = arr[1];
+                },
+                obj1:{
+                    /* 
+                    如果增加deep或者immediate属性，那么监听函数名必须为handler,否则报错
+                     */
+                    handler:function(value){
+                        console.log(value)
+                    },
+                    deep:true
+                }
+            }
+        })
+        vm_watch.$watch('fullName1',function(newValue,oldValue){
+            //监听基本数据类型
+            console.log(newValue,oldValue);
+            let arr = newValue.split('-');
+            this.firstName = arr[0];
+            this.lastName = arr[1];
+        })
+        vm_watch.$watch('obj',function(newValue,oldValue){
+            /* 
+            当监听对象时，若是不用深度监视，改变对象的某个属性或者方法时不能触发
+            回调函数，只有改变对象（即对象的地址指针指向）时才能触发回调，若是想实现
+            改变对象内部的属性或者方法就可以触发回调，需要使用深度监视
+             */
+            console.log(newValue,oldValue)
+        },{
+            deep:true,//深度监视
+        })
+        vm_watch.$watch('lastName',function(value){
+            console.log('immediate');
+            // 不改变当前监视的值，就能触发回调
+        },{
+            immediate:true,
+        })
+    </script>
+</body>
+</html>

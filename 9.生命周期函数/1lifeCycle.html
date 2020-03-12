@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="del">删除vue实例</button>
+        <button @click="show=!show">toggle</button>
+        <p v-show="show">汪汪队立大功</p>
+
+    </div>
+    <script>
+        const vm_lifeCycle = new Vue({
+            el:'#app',
+            data:{
+                show:true,
+            },
+            methods:{
+                del:function(){
+                    console.log('111');
+                    this.$destroy();
+                }
+            },
+            // 以下八个函数为vue的声明周期函数
+            /* 
+            平时应用不多基本上，经常使用的是mounted和beforeDestroy
+             */
+            beforeGreate(){
+                console.log('beforeGreate')
+            },
+            greated(){
+                console.log('greate')
+            },
+            beforMounte(){
+                console.log('beforMounte');
+            },
+            // 在此经常用于启动异步任务（如ajax、定时器、绑定自定义事件）
+            mounted(){
+                console.log('mounte')
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate');
+            },
+            updated(){
+                console.log('updated');
+            },
+            // 在此经常做一些收尾工作，如清除定时器
+            beforeDestroy(){
+                console.log('beforeDestroy')
+            },
+            destroyed(){
+                console.log('destroyed')
+            }
+        })
+    </script>
+</body>
+</html>

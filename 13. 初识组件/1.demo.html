@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <button-counter></button-counter>
+       <button-counter></button-counter>
+       <button-counter></button-counter>
+       <button-counter></button-counter>
+       <component-a></component-a>
+    </div>
+    <hr>
+    <div id="app1">
+            <button-counter></button-counter>    
+            <!-- 没有在该模板中注册，故而局部注册的组件不能在此使用 -->
+            <!-- <component-a></component-a>        -->
+    </div>
+    <script>
+        /*
+        组件是可复用的vue实例，且带有一个名字，可以接收new Vue接收相同的选项，只是el
+        指向特有的选项。
+        在组件中data并不是像new Vue中那样是一个对象，取而代之的是data必须是一个函数，每个实例
+        可以维护一份被返回的对象 
+         */
+        //  全局注册组件
+        Vue.component('button-counter',{
+            data:function(){
+                return {
+                    count:0,
+                }
+            },
+            template:'<p><button @click="count++">点击一下{{count}}</button><span>{{count}}</span></p>',
+        })
+        let ComponentA = {
+            data:function(){
+                return {
+                    msg:'局部注册组件'
+                }
+            },
+            template:'<p>{{msg}}</p>'
+        }
+        const vm_component = new Vue({
+            el:'#app',
+            components:{
+               'component-a':ComponentA,
+            }
+        })
+        const vm_compontent1 = new Vue({
+            el:'#app1'
+        })
+    </script>
+</body>
+</html>

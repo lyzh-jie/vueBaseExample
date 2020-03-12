@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .fade-enter-active{
+            transition: all 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        .fade-enter,.fade-enter-to{
+            opacity: 0;
+        }
+        .fade-leave-active{
+            transform: translateX(100px);
+            transition: all 5s;
+        }
+        .fade-leave,.fade-leave-to{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show=!show">过渡</button>
+        <transition name="fade">
+            <!-- 当模板transition没有name属性时则六个属性默认为是v,当有name属性时则为name属性值开头 -->
+            <p v-show="show">小猪佩奇</p>
+            <!-- 在次数是否显示模板使用v-if或者v-show -->
+        </transition>
+    </div>
+    <script>
+        const vm_transition = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            }
+        })
+    </script>
+</body>
+</html>

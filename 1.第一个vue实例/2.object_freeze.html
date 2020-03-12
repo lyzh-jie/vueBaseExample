@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+    </div>
+    <script>
+        let data = {
+            msg:'汪汪队',
+            name:'小丽'
+        }
+        Object.freeze(data);//可以阻断响应式系统的追踪，从而阻断响应式的变化
+        const vm_freeze = new Vue({
+            el:'#app',
+            data
+        })
+        vm_freeze.msg = '小猪佩奇'
+    </script>
+</body>
+</html>

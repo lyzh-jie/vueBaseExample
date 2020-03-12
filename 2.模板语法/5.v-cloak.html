@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-cloak>{{msg}}</p>
+        <!-- 在使用vuejs开发时，经常会遇见在如Chrome这类能够快速解析的浏览器上出现表达式({{ express }} ),
+            或者是模块(div)的闪烁。对于这个问题由于JavaScript去操作DOM，都会等待DOM加载完成（DOM ready）。
+            对于vuejs这些会在DOM ready完会才回去解析html view Template，所以对于Chrome这类快速的浏览器你
+            会看见有闪烁的情况出现。而对于IE7，8这类解析稍慢的浏览器大部分情况下是不会出现这个问题的。
+        解决方案是：
+        使用v-cloak指令保持在元素上直到关联实例结束编译，和 CSS 规则如 [v-cloak] { display: none } 一起用时，
+        这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
+        -->
+    </div>
+    <script>
+        const vm_vCloak = new Vue({
+            el:'#app',
+            data:{
+                msg:'小猪佩奇',
+            }
+        })
+    </script>
+</body>
+</html>

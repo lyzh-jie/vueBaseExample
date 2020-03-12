@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-upper="msg"></p>
+        <p v-lower="msg"></p>
+    </div>
+    <div id="app1">
+            <p v-upper="msg"></p>
+            <p v-lower="msg"></p>
+        </div>
+    <script>
+        // 定义全局指令
+        Vue.directive('lower',function(el,binding){
+            el.textContent = binding.value.toLowerCase();
+        })
+        const vm_directive = new Vue({
+            el:'#app',
+            data:{
+                msg:'I will learn directive'
+            },
+            /* 
+            定义局部指令
+            el:指令属性所在的标签对象
+            binding:包含指令数据相关信息的数据对象
+             */
+            directives:{
+                upper(el,binding){
+                    console.log(binding)
+                    el.textContent = binding.value.toUpperCase();
+                }
+            }
+        })
+        // 全局指令可以再任何vue实例对象中使用，局部指令只能在当前vue实例对象中使用
+        const vm_directive1 = new Vue({
+            el:'#app1',
+            data:{
+                msg:'I will learn directive'
+            },           
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+</head>
+<body>
+    <div id="app">
+        <button @click="show=!show">toggle</button>
+        <transition
+        enter-active-class='animated bounce'
+        leave-active-class="animated flash"
+        >
+        <!-- -->
+            <p v-if="show">汪汪队立大功！！！</p>
+        </transition>
+    </div>
+    <script>
+        const vm_anim = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            }
+        })
+    </script>
+</body>
+</html>

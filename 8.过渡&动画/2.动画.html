@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .animationFade-enter,.animationFade-enter-to{
+            transition: opacity 5s;
+        }
+        .animationFade-enter-active{
+            animation: anima 5s cubic-bezier(0.075, 0.82, 0.165, 1)
+        }
+        /* 动画依照css3动画正常使用即可 */
+        @keyframes anima{
+            0%{
+                transform: translateX(0px) scale(0);
+            }
+            50%{
+                transform: translateX(100px) scale(1);
+            }
+            100%{
+                transform:translateX(100px) scale(2)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show=!show">toggle</button>
+        <transition name="animationFade">
+            <p v-if="show">恐龙阿旺力大无穷！！</p>
+        </transition>
+    </div>
+    <script>
+        const vm_animation = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="ok">{{msg1}}</p>
+        <p v-else>{{msg2}}</p>
+        <hr>
+        <p v-if="ok">{{msg1}}</p>
+        <p v-else-if="ok1">{{msg2}}</p>
+        <p v-else>{{msg3}}</p>
+        <hr>
+        <p v-show="ok">{{msg1}}</p>
+        <p v-show="!ok">{{msg2}}</p>
+        <!-- v-if v-else-if v-else是真正的条件渲染，被监听的是会真正的销毁或重建
+            v-show只是使用了display：none css属性显示或者隐藏DOM
+            v-if有惰性当初始条件为false不会进行渲染，但是v-show不管什么时候都会进行渲染
+            当频繁的切换时使用v-show，可以节省开销-->
+    </div>
+    <script>
+        const vm_vIf = new Vue({
+            el:'#app',
+            data:{
+                ok:false,
+                ok1:false,
+                msg1:'小猪佩奇',
+                msg2:'汪汪队',
+                msg3:'恐龙阿旺'
+            }
+        })
+    </script>
+</body>
+</html>

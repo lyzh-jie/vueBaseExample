@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <button v-on:click="count+=1">点击一下加一下</button>
+        <!-- v-on处理事件 -->
+        <button @click="count=count-1">点击一下减一下</button>
+        <!-- v-on的简写方式 -->
+        <p>点击的次数{{count}}</p>
+
+        <!-- 当处理的逻辑不是一个表达式可以解决的时候，需要定义方法 -->
+
+        <button @click="countNum">点击的次数的五倍</button>
+        <!-- 事件处理方法 -->
+        <button @click="countNum()">点击的次数的五倍（）</button>
+        <!-- 内联处理器中的方法 -->
+        <button @click="say('hi')">say hi</button>
+        <!-- 内联处理器中的方法可以传参 -->
+        <button @click="jump('hello',$event)">jump hello</button>
+        <!-- 若是在内联处理器中的方法需要使用到原生DOM事件，需要将$event作为形参传入，否则会报undefined -->
+    </div>
+    <script>
+        const vm_vOn = new Vue({
+            el:'#example',
+            data:{
+                count:0
+            },
+            methods:{
+                countNum:function(event){
+                    this.count += 1;
+                    let num = this.count * 5;
+                    console.log(num);
+                    console.log(this);
+                    // 方法中的this指向当前的vue实例对象。 
+                    if(event){
+                        // 该event为原生的DOM事件
+                        console.log(event.target);
+                    }
+                },
+                say:function(message){
+                    alert(message);
+                },
+                jump:function(message,event){
+                    alert(message);
+                    console.log(event);   
+                }
+
+            }
+        })
+        console.log(vm_vOn);
+        vm_vOn.countNum();//通过实例对象可以读取方法。
+    </script>
+</body>
+</html>

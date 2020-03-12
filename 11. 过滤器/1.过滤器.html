@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name">
+        <!-- 
+            过滤器可以用在两个地方：双花括号插值和 v-bind 表达式 (后者从 2.1.0+ 开始支持)。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符号指示
+         -->
+        <p>{{name|capitalizUpper}}</p>
+        <p :title="title|Upper">佩奇</p>
+    </div>
+    <div id="app1">
+        <p>{{title|Upper}}</p>
+        <p>{{name|capitalizUpper}}</p>
+    </div>
+    <script>
+        // 全局过滤器
+        Vue.filter('Upper',function(value){
+            if(!value) return;
+            value = value.toString();
+            return value.toUpperCase();
+        })
+        const vm_filter = new Vue({
+            el:'#app',
+            data:{
+                name:'jack',
+                title:'she is pig!'
+            },
+            // 局部过滤器
+            filters:{
+                capitalizUpper(value){
+                    if(!value) return;
+                    value = value.toString();
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                }
+            }
+        })
+        const vm_filter1 = new Vue({
+            el:'#app1',
+            data:{
+                name:'jack',
+                title:'she is pig!'
+            },           
+        })
+    </script>
+</body>
+</html>

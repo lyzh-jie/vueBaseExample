@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="idInp"><br>
+        <input type="text" v-model="titleInp"><br>
+        <button @click="addCartoon">添加</button>
+        <!-- v-for指令只能简单的实现数据的遍历，当数据发生变化时，由于指令和数据的唯一关联就是遍历的数组下标
+        指令记住的下标，当数据变化则下标跟着变化，故而需要加入key属性，通过数据和指令可以通过key属性识别数据，
+        key属性需要具有不能重复性，唯一性 -->
+        <ul v-for="(cartoon,index) in cartoons" :key="cartoon.id">
+            <li :style="{listStyle:'none'}">
+                <input type="checkbox">
+                <span>{{index}}---{{cartoon.id}} {{cartoon.title}}</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm_vforKey = new Vue({
+            el:'#app',
+            data:{
+                idInp:'',
+                titleInp:'',
+                cartoons:[
+                    {
+                        id:1,
+                        title:'小猪佩奇',
+                    },
+                    {
+                        id:2,
+                        title:'汪汪队',
+                    },
+                    {
+                        id:3,
+                        title:'萌鸡小队',
+                    },
+                    {
+                        id:4,
+                        title:'瑞奇宝宝',
+                    },
+                ]
+            },
+            methods:{
+                addCartoon:function(){
+                    this.cartoons.unshift({
+                        id:this.idInp,
+                        title:this.titleInp
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

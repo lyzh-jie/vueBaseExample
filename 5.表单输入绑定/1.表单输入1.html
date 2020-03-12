@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <h1>文本</h1>
+        <input type="text" v-model="msg"><br>
+        <textarea name="" id="" cols="30" rows="10" v-model="msg"></textarea><br>
+        <h1>复选框</h1>
+        <!-- 单个复选框绑定到布尔值 -->
+        <input type="checkbox" name="" id="checked" v-model="checked">
+        <label for="checked">{{checked}}</label><br>
+        <!-- 多个复选框绑定到数组 -->
+        <input type="checkbox" id="Jack" value="Jack" v-model="checkboxes">
+        <label for="Jack">Jack</label>
+        <input type="checkbox" id="Cloak" value="Cloak" v-model="checkboxes">
+        <label for="Cloak">Cloak</label>
+        <p>{{checkboxes}}</p>
+        <h1>单选按钮</h1>
+        <input type="radio" name="" value="girl" id="girl" v-model='radioChecked'>
+        <label for="girl">girl</label>
+        <p>{{radioChecked}}</p>
+    </div>
+    <script>
+        const vm_vModel = new Vue({
+            el:'#app',
+            data:{
+                msg:'小猪佩奇',
+                checked:false,
+                checkboxes:[],
+                radioChecked:''
+            }
+        })
+        
+    </script>
+</body>
+</html>

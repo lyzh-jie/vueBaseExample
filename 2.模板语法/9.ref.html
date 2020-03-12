@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p ref="cartoon">动画片</p>
+        <!-- ref : 为某个元素注册一个唯一标识, vue对象通过$els属性访问这个元素对象 -->
+        <button @click="show">显示</button>
+    </div>
+    <script>
+        const vm_ref = new Vue({
+            el:'#app',
+            methods:{
+                show:function(){
+                    console.log(this.$refs.cartoon.textContent);
+                    // 可以通过this.$refs获取到该标签
+                }
+            }    
+        })
+        console.log(vm_ref)
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model在表单中不仅可以绑定静态数据同时也可以绑定动态的数据 -->
+        <!-- 复选框 -->
+        <input type="checkbox" name="" id="check" v-model="checkbox" true-value='yes' false-value="no">
+        <label for="check">John</label>
+        <p>{{checkbox}}</p>
+        <!-- 单选框 -->
+        <input type="radio" name="" id="sex" v-model="sex" v-bind:value="sexName">
+        <label for="sex">请选择性别</label>
+        <p>{{sex}}</p>
+        <!-- 选择框 -->
+        <select name="" id="" v-model="selected">
+            <option value="" disabled>请选择</option>
+            <option v-bind:value="obj">lili</option>
+        </select>
+        <p>{{selected}}</p>
+    </div>
+    <script>
+
+        const wm_value = new Vue({
+            el:'#app',
+            data:{
+                checkbox:'',
+                sexName:'男',
+                sex:'',
+                selected:'',
+                obj:{
+                    name:'lili'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

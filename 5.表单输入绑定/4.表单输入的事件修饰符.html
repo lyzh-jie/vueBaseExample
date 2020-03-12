@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <!-- 
+            v-model每次更新数据是输入框中的值与数据进行同步更新
+            使用.lazy则是输入框失去焦点后数据进行更新
+            原理：将oninput事件改为使用onchange事件
+            oninput与onchange的区别：
+            oninput事件是元素的值发生变化时立即触发，
+            onchange事件是在元素失去焦点时触发。
+         -->
+         <input type="text" v-model="msg">
+         <input type="text" v-model.lazy="msg"><br>
+         <!-- .number修饰符会将v-model中的值转换为number类型
+            注：当输入的第一个字符为字符串则数据类型不会转变
+        -->
+         <input type="text" v-model="num">
+         <input type="text" v-model.number="num">
+         <p>{{typeof(num)}}</p>
+        <!-- .trim修饰符 过滤用户输入时收尾的空格字符 -->
+         <input type="text" v-model="info">
+         <input type="text" v-model.trim="info">
+         <p>|{{info}}</p>
+    </div>
+    <script>
+        const vm_eventFormDescription = new Vue({
+            el:'#app',
+            data:{
+                msg:'小猪佩奇|',
+                num:'',
+                info:''
+            }
+        })
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <!-- 双括号表达式中可以显示绑定的data中的数据 -->
+        <p>{{msg.toUpperCase()}}</p>
+        <!-- 在其中可以使用JavaScript表达式 -->
+        <p v-once>{{msg}}</p>
+        <!-- v-once实现一次性插入，当msg值发生改变时不会再次改变，可能会影响其他节点的变化 -->
+        <p v-text='msg.toUpperCase()'></p>
+        <!-- v-text同双括号表达式的用法类似 -->
+        <p>{{num+1}}</p>
+        <div v-text='num+2'></div>
+    </div>
+    <script>
+        const vm_mustache = new Vue({
+            el:'#app',
+            data:{
+                msg:'wangwagndui',
+                num:0
+            }
+        })
+        
+    </script>
+</body>
+</html>
+<!-- 
+    表达式：
+    msg.toUpperCase()
+    num++
+    ok?"yes":"no"
+    语句：
+    let a = '123'
+    if(ok){
+        console.log('xxx');
+    }
+
+ -->

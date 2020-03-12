@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="http:baidu.com">百度一下</a><br>
+        <a v-bind:href="url">百度一下</a><br>
+        <!-- href相当于v-bind指令的参数，该参数是变化的HTMLattribute-->
+        <a :href="url">百度一下</a>
+        <!-- v-bind的缩写方式 -->
+        <p v-bind:title="msg">佩奇是个很漂亮的女孩</p>
+        <p :title="msg">乔治是个很帅气的男孩</p>
+
+    </div>
+    <script>
+        const vm_vBind = new Vue({
+            el:'#app',
+            data:{
+                url:'http://baidu.com',
+                msg:'pig'
+            }
+        })
+    </script>
+</body>
+</html>

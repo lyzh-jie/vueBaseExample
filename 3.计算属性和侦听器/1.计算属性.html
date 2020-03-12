@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">       
+        <input type="text" v-model="firstName"><br>
+        <input type="text" v-model="lastName"><br>
+        <input type="text" v-model="fullName"><br>
+        <input type="text" v-model="fullName1()">
+    </div>
+    <script>
+        const vm_computed = new Vue({
+            el:'#app',
+            data:{
+                firstName:'a',
+                lastName:'b',
+            },           
+            /* 
+            1.计算属性也是Vue实例对象上的属性，可以通过实例对象.xx方式读取
+            2.一般计算属性都依赖于data对象中的属性，当data对象中的属性值发生变化
+            则计算属性中的值发生变化。
+            3.某些时候计算属性和方法可以达到同样的效果，但是计算属性有缓存（即它所依赖的
+            data中的属性值不发生变化则此计算属性只计算一次，并将其缓存），而方法没有，每
+            一次使用都要重新计算，当在高频率的计算时，方法开销比较大。            
+             */
+            computed:{
+                fullName:function(){
+                    return this.firstName + '-' + this.lastName;
+                }
+            },
+            methods:{
+                fullName1:function(){
+                    return this.firstName + '-' + this .lastName;
+                }
+            }
+        })
+        console.log(vm_computed);
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p = {
+            firstName:'a',
+            lastName:'b'
+        }
+        // vue数据双向绑定的底层实现的API（或者说原理）
+        Object.defineProperty(p,'fullName',{
+            get(){
+                return this.firstName + '-' + this.lastName;
+            },
+            set(value){
+                let arr = value.split('-');
+                this.firstName = arr[0];
+                this.lastName = arr[1]
+            }
+        })
+    </script>
+</body>
+</html>

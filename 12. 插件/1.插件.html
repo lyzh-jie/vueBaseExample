@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-upper-case="msg"></p>
+    </div>
+    <script src="./plugin.js"></script>
+    <script>
+        // 声明使用插件  内部调用了插件对象的install()
+        Vue.use(MyPlugin);
+        Vue.myGlobalMethod()
+        const vm_plugin = new Vue({
+            el:'#app',
+            data:{
+                msg:'jack'
+            }
+
+        })
+        console.log(vm_plugin.$myMethod)
+    </script>
+</body>
+</html>
